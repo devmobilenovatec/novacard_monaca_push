@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html dir="ltr" lang="fr" class="firefox firefox50 win journal-desktop is-guest skin-5 responsive-layout extended-layout header-center header-center-sticky backface product-grid-second-image product-list-second-image account-page layout-6 route-account-register oc2" data-j2v="2.7.1">
+<head>
+</head>
+<body>
+<div class="extended-container">
+<div id="mobile-content">
+<style>
+.super-menu > li:last-of-type {
+
+    /*background-color:rgb(16,78,139);*/
+	
+}
+.sk-circle .sk-child:before {
+  background-color: rgb(0, 0, 0);
+}
+</style><div id="container" class="container j-container">
+     <div class="row" >                <div id="content" class="col-sm-12">
+                <p class="account-text">Si vous avez déjà créé un compte, veuillez vous connecter à la <a href="https://dev.novacorp.fr/Novacard/index.php?route=account/login&m=1">page d’identification</a>.</p>
+      <div class="content">
+      <form id="forms" action="https://dev.novacorp.fr/Novacard/index.php?route=account/register&m=1" method="post" enctype="multipart/form-data" class="form-horizontal">
+        <fieldset id="account">
+          <h2 class="secondary-title">Vos informations personnelles</h2>
+          <div class="form-group required" style="display: none;">
+            <label class="col-sm-2 control-label">Customer Group</label>
+            <div class="col-sm-10">
+                                          <div class="radio">
+                <label>
+                  <input type="radio" name="customer_group_id" value="1" checked="checked" />
+                  Default</label>
+              </div>
+                                        </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-firstname">Prénom</label>
+            <div class="col-sm-10">
+              <input type="text" name="firstname" value="" placeholder="Prénom" id="input-firstname" class="form-control" />
+                          </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-lastname">Nom</label>
+            <div class="col-sm-10">
+              <input type="text" name="lastname" value="" placeholder="Nom" id="input-lastname" class="form-control" />
+                          </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-email">Courriel</label>
+            <div class="col-sm-10">
+              <input type="text" name="email" value="" placeholder="Courriel" id="input-email" class="form-control" />
+                          </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-telephone">Téléphone</label>
+            <div class="col-sm-10">
+              <input type="tel" name="telephone" value="" placeholder="Téléphone" id="input-telephone" class="form-control" />
+                          </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-fax">Fax</label>
+            <div class="col-sm-10">
+              <input type="text" name="fax" value="" placeholder="Fax" id="input-fax" class="form-control" />
+            </div>
+          </div>
+                  </fieldset>
+        <br/>
+        <fieldset id="address">
+          <h2 class="secondary-title">Votre adresse</h2>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-company">Société</label>
+            <div class="col-sm-10">
+              <input type="text" name="company" value="" placeholder="Société" id="input-company" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-address-1">Adresse</label>
+            <div class="col-sm-10">
+              <input type="text" name="address_1" value="" placeholder="Adresse" id="input-address-1" class="form-control" />
+                          </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-address-2">Complément d’adresse</label>
+            <div class="col-sm-10">
+              <input type="text" name="address_2" value="" placeholder="Complément d’adresse" id="input-address-2" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-city">Ville</label>
+            <div class="col-sm-10">
+              <input type="text" name="city" value="" placeholder="Ville" id="input-city" class="form-control" />
+                          </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-postcode">Code postal</label>
+            <div class="col-sm-10">
+              <input type="text" name="postcode" value="" placeholder="Code postal" id="input-postcode" class="form-control" />
+                          </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-country">Pays</label>
+            <div class="col-sm-10">
+              <select name="country_id" id="input-country" class="form-control">
+                <option value=""> --- Veuillez choisir --- </option>
+                                                <option value="74">France, Metropolitaine</option>
+                                                                <option value="87" selected="selected">Guadeloupe</option>
+                                                                <option value="92">Guyana</option>
+                                                                <option value="75">Guyane Française</option>
+                                                                <option value="93">Haiti</option>
+                                                                <option value="134">Martinique</option>
+                                                                <option value="137">Mayotte</option>
+                                                                <option value="76">Polynésie Française</option>
+                                                                <option value="174">Reunion</option>
+                                                                <option value="185">Senegal</option>
+                                              </select>
+                          </div>
+          </div>
+          <div class="form-group ">
+            <label class="col-sm-2 control-label" for="input-zone">Département</label>
+            <div class="col-sm-10">
+              <select name="zone_id" id="input-zone" class="form-control">
+              </select>
+                          </div>
+          </div>
+                    
+        </fieldset>
+        <br/>
+		
+        <fieldset  >
+          <h2 class="secondary-title">Votre mot de passe</h2>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-password">Mot de passe</label>
+            <div class="col-sm-10">
+              <input type="password" name="password" value="" placeholder="Mot de passe" id="input-password" class="form-control" />
+                          </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-confirm">Confirmation</label>
+            <div class="col-sm-10">
+              <input type="password" name="confirm" value="" placeholder="Confirmation" id="input-confirm" class="form-control" />
+                          </div>
+          </div>
+        </fieldset>
+		
+        <br/>
+        <fieldset>
+          <h2 class="secondary-title">Lettre d’information</h2>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Abonnement</label>
+            <div class="col-sm-10">
+                            <label class="radio-inline">
+                <input type="radio" name="newsletter" value="1" />
+                Oui</label>
+              <label class="radio-inline">
+                <input type="radio" name="newsletter" value="0" checked="checked" />
+                Non</label>
+                          </div>
+          </div>
+        </fieldset>
+                                        <div class="buttons">
+          <div class="pull-right">
+		  
+		  J’ai lu et approuvé la rubrique <a class="fancybox" onclick="ouvrePopUp('https://dev.novacorp.fr/Novacard/index.php?route=information/information/agree&amp;information_id=3');" alt="Mentions légales"><b>Mentions légales</b></a>                        <input type="checkbox" name="agree" value="1" />
+                        &nbsp;
+			<br/>
+			J'accepte de recevoir les offres des partenaires <b><a onclick="ouvrePopUp('index.php?route=custompage/liste&m=1');">Novacard</a></b>
+		
+		  <input type="checkbox" name="partenaires" value="1" />
+		 
+            <input type="submit" value="Continuer" onclick="$('#forms').hide();$('.alert').hide();$('.sk-circle').show();" class="btn btn-primary button" />
+          </div>
+        </div>
+              </form>
+	  <div class="sk-circle" style="display:none;">
+		  <div class="sk-circle1 sk-child"></div>
+		  <div class="sk-circle2 sk-child"></div>
+		  <div class="sk-circle3 sk-child"></div>
+		  <div class="sk-circle4 sk-child"></div>
+		  <div class="sk-circle5 sk-child"></div>
+		  <div class="sk-circle6 sk-child"></div>
+		  <div class="sk-circle7 sk-child"></div>
+		  <div class="sk-circle8 sk-child"></div>
+		  <div class="sk-circle9 sk-child"></div>
+		  <div class="sk-circle10 sk-child"></div>
+		  <div class="sk-circle11 sk-child"></div>
+		  <div class="sk-circle12 sk-child"></div>
+	</div>
+      </div>
+      <div class="row"  >
+<div class="" >
+<div class="socials">
+
+<h2 class="secondary-title"><b>Inscription via</b></h3><div id="oneall_social_login_4018274"  ></div>
+	<script type='text/javascript'>
+	var _oneall = _oneall || [];
+	_oneall.push(['social_login', 'set_providers', ['facebook','google','twitter']]);
+	_oneall.push(['social_login', 'set_callback_uri', 'https://dev.novacorp.fr/Novacard/index.php?route=module/oneall']);
+	_oneall.push(['social_login', 'set_grid_size', 'x', 99]);
+	_oneall.push(['social_login', 'set_grid_size', 'y', 99]);
+	_oneall.push(['social_login', 'set_custom_css_uri', 'https://dev.novacorp.fr/Novacard/catalog/view/javascript/oneall/socialnet.css']);
+	_oneall.push(['social_login', 'do_render_ui', 'oneall_social_login_4018274']);
+	</script>
+</div>
+
+<div class="socials2">
+
+<h2 class="secondary-title"><b>Connexion via</b></h3><div id="oneall_social_login_1794308"  ></div>
+	<script type='text/javascript'>
+	var _oneall = _oneall || [];
+	_oneall.push(['social_login', 'set_providers', ['facebook','google','twitter']]);
+	_oneall.push(['social_login', 'set_callback_uri', 'https://dev.novacorp.fr/Novacard/index.php?route=module/oneall']);
+	_oneall.push(['social_login', 'set_grid_size', 'x', 99]);
+	_oneall.push(['social_login', 'set_grid_size', 'y', 99]);
+	_oneall.push(['social_login', 'set_custom_css_uri', 'https://dev.novacorp.fr/Novacard/catalog/view/javascript/oneall/socialnet.css']);
+	_oneall.push(['social_login', 'do_render_ui', 'oneall_social_login_1794308']);
+	</script>
+</div>
+
+
+</div>
+</div>
+<style>
+#socials
+{
+	background-color: #f5f5f5;
+}
+</style>
+<script>
+/*$('#socials').addClass('col-sm-6');
+$('#socials').append($('.left').html());
+$('.left').hide();
+$('#socials').addClass('left');
+*/
+$('.socials').hide();
+$('.socials2').hide();
+$('#place').append($('.socials').html());
+$('.right').find('.login-wrap').append($('.socials2').html());
+//$('.login-wrap').append($('.socials').html());
+</script></div>
+    </div>
+	
+</div>
+	<style>
+html {
+    height: 100%;
+	background-color:white;
+}
+.extended-container::before
+{
+	background-color:white;
+}
+</style>
+	
+</div>
+<footer></footer><div class="scroll-top"></div>
+
+<script type="text/javascript" src="https://dev.novacorp.fr/Novacard/catalog/view/theme/journal2/lib/swipebox/source/jquery.swipebox.min.js?j2v=2.7.1"></script>
+<script type="text/javascript" src="https://dev.novacorp.fr/Novacard/catalog/view/theme/journal2/lib/hover-intent/jquery.hoverIntent.min.js?j2v=2.7.1"></script>
+<script type="text/javascript" src="https://dev.novacorp.fr/Novacard/catalog/view/theme/journal2/lib/pnotify/jquery.pnotify.min.js?j2v=2.7.1"></script>
+<script type="text/javascript" src="https://dev.novacorp.fr/Novacard/catalog/view/theme/journal2/lib/autocomplete2/jquery.autocomplete2.min.js?j2v=2.7.1"></script>
+<script type="text/javascript" src="https://dev.novacorp.fr/Novacard/catalog/view/theme/journal2/lib/respond/respond.js?j2v=2.7.1"></script>
+<script type="text/javascript" src="https://dev.novacorp.fr/Novacard/catalog/view/theme/journal2/lib/sticky/jquery.sticky.js?j2v=2.7.1"></script>
+<script type="text/javascript" src="https://dev.novacorp.fr/Novacard/catalog/view/theme/journal2/js/init.js?j2v=2.7.1"></script>
+<script type="text/javascript" src="index.php?route=journal2/assets/js&amp;j2v=2.7.1"></script>
+
+
+			<script src="https://code.jquery.com/jquery-migrate-1.0.0.min.js"></script>
+	
+						
+			
+</body>
+</html>

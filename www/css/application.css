@@ -1,0 +1,340 @@
+/*ELEMENTS DE STYLE LIES A l'APPLI UNIQUEMENT (BOUTONS - TEXTE - COULEURS)*/
+
+    .center{
+        font-family: 'Lato', sans-serif;
+        font-weight: bold;
+        font-size: 15pt;
+    }
+    #app-version{
+        text-align: center;
+        position: absolute;
+        width: 100%;
+        bottom: 7%;
+        font-weight: bold;
+        font-style: italic;
+        font-size: 8pt;
+        text-transform: uppercase;
+    }
+    #numvers{
+        color: #f65b51;
+        font-weight: bolder;
+    }
+    #yearvers{
+        
+    }
+    #map{
+        height:100%;
+    }
+    .fab--geo-arround{
+        background-color: #fff;
+        transform: scale(0.75) !important;
+        margin-top: -10px;
+    }
+    .fab--geo-arround ons-icon{
+        color: #f67b51 !important;
+    }
+    
+    .navigation-bar{
+        background-image: url(../img/backgroundLogo.jpg) !important;
+        background-repeat: no-repeat;
+        background-size: 120px auto;
+        background-position: center top;
+    }
+    .button--barbutton{
+        width:30pt;
+        height:30pt;
+        background-color:transparent;
+        text-align:center;
+        position:absolute;
+        right: 16px;
+        top: -3px;
+    }
+ 
+    .button--barbutton ons-icon{
+       font-size:22pt;
+       color:#f67b51;
+    }
+    
+    .button--barbutton span{
+        display: block;
+        color: #f67b51;
+        position: fixed;
+        z-index: 10000;
+        top: 28px;
+        right: 12px;
+        font-size: 6pt;
+    }
+    .mTitle{
+        font-size: 7pt;
+        display: block;
+        margin-top: 18px;
+        font-weight: bold;
+        color: #f67b51;
+    }
+    h1.markerTitle{
+        font-size: 7pt;
+        font-weight: bold;
+        text-align: center;
+        margin:0;
+    }
+    img.markerImg{
+        max-height: 50px;
+        text-align: center;
+        max-width: 50px;
+    }
+    div.markerDiv{
+        text-align: center;
+    }
+    
+    #web-content{
+        height: 90%;
+        margin: 0;
+        padding-top: 32pt;
+        border: 0;
+    }
+    
+    #unavailable-header h1{
+        font-size:17pt;
+        display:block;
+        color:#fff;
+        background-color:#f67b51;
+        width:100%;
+        text-align: center;
+    }
+    #unavailable-content{
+        background-image: url(../img/backgroundLogo.jpg) !important;
+        background-repeat: no-repeat;
+        background-size: 60% auto;
+        background-position: center center;
+        opacity: 0.4;
+        height: 40%;
+        text-align:center;
+    }
+    #unavailable-motif{
+        font-weight: bold;
+        font-size: 14pt;
+        color: #000;
+        opacity: 1 !important;
+        margin-top: 50%;
+        display: block;
+    }
+    
+    #login-form, #login-form2{
+        text-align:center;
+        margin-top:15%
+    }
+    #login-form ons-input, #login-form2 ons-input{
+        font-size: 14pt;
+        display: block;
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-top: 3px;
+        margin-bottom: 10px;
+        width: 80%;
+        border: 1px solid #aaa;
+        border-radius: 5px;
+    }
+    #login-profile{
+    }
+    #login-profile ons-icon{
+    	display:block;
+    	font-size:50pt;
+		width:100px;
+		height:100px;
+		padding-top: 10px;
+    	margin-left:auto;
+    	margin-right:auto;
+    	border-radius:100%;
+    	color: #f67b51;
+    	border: 2px solid #f67b51;
+    }
+    #login-profile-name{
+    	font-weight:bold;
+    	display:block;
+    	font-style:italic;
+    	font-size:9pt;
+    	margin-top:10px;
+    	margin-bottom: 15px;
+    }
+    
+    .button--login-form{
+        background-color: #f67b51;
+        width: 50%;
+        margin-left: 5%;
+    }
+    .button--login-recall{
+        width:12%;
+        color:#fff;
+    }
+    .button--login-create{
+        background-color: green;
+        width: 70%;
+        margin-top: 10px;
+    }
+    .button--login-forgotten{
+        background-color: #f64351;
+        width: 70%;
+        margin-top: 10px;
+    }
+    #gen-content-div1, #gen-content-div2{
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    #novaform-success{
+        font-weight:bold;
+        text-align:center;
+        font-size:14pt !important;
+        margin-top: 15%;
+        width:80%;
+        margin-left:10%;
+    }
+    .spinner {
+        position: absolute;
+        background-image: url('../img/ajax-loader.gif');
+    	background-size: auto 15%;
+    	background-repeat: no-repeat;
+    	background-position: center;
+    	/*background-color: #f4f4f4;*/
+    	background-color: #fff;
+        height:100%;
+        width:100%;
+    	z-index: 10;
+    }
+    .page__background{
+       
+    }
+
+    .hidden{
+        visibility: hidden;
+    }
+    .link{
+        color:#f67b51 !important;
+        text-decoration:underline !important;
+        font-weight:bold !important;
+        font-size: 9pt !important;
+        margin-left: 3px !important;
+        margin-right: 10px !important;
+        display: inline-block !important;
+    }
+    .tab-bar__label{
+        font-family: 'Lato', sans-serif;
+        font-size:9pt !important;
+        font-weight:bold !important;
+        color:#000;
+    }
+    :checked + .tab-bar__button, .active .tab-bar__label{
+        color: #f67b51 !important;
+    }
+    
+    #scanError{
+        font-size: 18pt;
+        font-weight: bold;
+        margin-top: 10%;
+        display: block;
+        margin-bottom: 8%;
+        text-align: center;
+    }
+    .button--scanbarcode{
+        width: 100%;
+        height: auto;
+        text-align: center;
+        /* margin-top: 60pt; */
+        border-radius: 10px;
+        background-color: #f67b51;
+        margin-bottom: 10%;
+    }
+    .button--scanbarcode ons-icon{
+        font-size: 500%;
+        display: block !important;
+        margin-top: 13%;
+    }
+    .button--scanbarcode span{
+        font-size: 13pt;
+        display: block;
+        text-align: center;
+    }
+    
+    .button--ajoutMan{
+        width: 100%;
+        height: auto;
+        text-align: center;
+        /* margin-top: 60pt; */
+        border-radius: 10px;
+        /*background-color: #f67b51;*/
+    }
+    .button--ajoutMan ons-icon{
+        font-size: 400%;
+        display: block !important;
+        margin-top: 13%;
+    }
+    .button--ajoutMan span{
+        display: block;
+        text-align: center;
+        line-height: 12pt;
+        font-size: 12pt;
+    }
+    
+    .button--rechargeMan{
+        width: 100%;
+        height: auto;
+        text-align: center;
+        /* margin-top: 60pt; */
+        border-radius: 10px;
+        background-color: green;
+    }
+    .button--rechargeMan ons-icon{
+        font-size: 400%;
+        display: block !important;
+        margin-top: 13%;
+    }
+    .button--rechargeMan span{
+        display: block;
+        text-align: center;
+        line-height: 12pt;
+        font-size: 12pt;
+    }
+    
+    .button--submenu{
+        width:60pt;
+        height:60pt;
+        background-color:transparent;
+        margin:10px;
+        margin-top:60px;
+        text-align:center;
+    }
+    .button--submenu ons-icon{
+       font-size:40pt;
+       color:#575351;
+    }
+    .button--submenu span{
+        font-size:8pt;
+        color:black;
+        display:block;
+        font-weight: bold;
+        font-family: 'Lato', sans-serif;
+    }
+    .button--pBack{
+        background-color: #fff;
+        text-align: center;
+        position: absolute;
+        z-index: 10;
+        top: 0px;
+        left: 10px;
+        border-radius: 20pt;
+        width: 40pt;
+        height: 32pt;
+        margin: 0;
+        padding: 0;
+    }
+    .button--pBack ons-icon{
+       font-size:32pt;
+       color:#f67b51;
+    }
+    
+    .button--private{
+        visibility:hidden;
+    }
+    .button--public{
+    }
+    
+    

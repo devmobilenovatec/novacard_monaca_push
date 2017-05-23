@@ -1,0 +1,5 @@
+/* Special CSS elements that renders better with these settings on ANDROID */
+.navigation-bar{
+    height: 35pt !important;
+    margin-top: 5pt !important;
+}
