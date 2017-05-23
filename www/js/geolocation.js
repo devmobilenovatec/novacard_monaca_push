@@ -24,7 +24,7 @@
         GLOBAL_geoPosition["heading"]=position.coords.heading;
         GLOBAL_geoPosition["speed"]=position.coords.speed;
         GLOBAL_geoPosition["timestamp"]=position.timestamp;
-        //debugPosition();
+        debugPosition();
         
         //Appel à la fonction de géolocalisation en utilisant l'API Eurofid directement
         //car la fonctionnalité n'est pas présente sur OpenCart
@@ -38,13 +38,13 @@
         //Position par défaut
         GLOBAL_geoPosition["latitude"]=16.2538111;
         GLOBAL_geoPosition["longitude"]=-61.5784549;
-        console.log('Impossible de lire les coordonnées GPS ! \n'+
+        logDebug('Impossible de lire les coordonnées GPS ! \n'+
               'code: '    + error.code    + '\n' +
               'message: ' + error.message + '\n');
     }
     
     function debugPosition(){
-     console.log('Latitude: '          + GLOBAL_geoPosition.latitude          + '\n' +
+     logDebug('Latitude: '          + GLOBAL_geoPosition.latitude          + '\n' +
       'Longitude: '         + GLOBAL_geoPosition.longitude         + '\n' +
       'Altitude: '          + GLOBAL_geoPosition.altitude          + '\n' +
       'Accuracy: '          + GLOBAL_geoPosition.accuracy          + '\n' +

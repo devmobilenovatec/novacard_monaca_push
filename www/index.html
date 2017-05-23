@@ -4,15 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
-  <script src="components/loader.js"></script>
+  <!-- <script src="components/loader.js"></script> -->
+ <script type="text/javascript" src="cordova.js"></script>
  
   <!--<script src="lib/angular/angular.min.js"></script>-->
-  <script src="lib/angular/angular.js"></script>
+  <script src="mods/angular/angular.js"></script>
   <!--<script src="lib/onsenui/js/onsenui.min.js"></script>-->
-  <script src="lib/onsenui/js/onsenui.js"></script>
+  <script src="mods/onsenui/js/onsenui.js"></script>
   <!-- Ajout jQuery -->
   <script src="js/jquery-3.1.1.min.js"></script>
-  <script src="lib/onsenui/js/angular-onsenui.min.js"></script>
+  <script src="mods/onsenui/js/angular-onsenui.min.js"></script>
   
  
   <!-- PERSONNALISATION -->
@@ -31,8 +32,8 @@
   <!-- Google fonts -->
   <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet"> 
   <link rel="stylesheet" href="components/loader.css">
-  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
-  <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+  <link rel="stylesheet" href="mods/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="mods/onsenui/css/onsen-css-components.css">
   <link rel="stylesheet" href="css/application.css">
   <link rel="stylesheet" href="css/openCartMOB.css">
   
@@ -46,22 +47,18 @@
   </ons-if>
 
   <!-- BOOTSTRAP -->
-  <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
-  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="mods/bootstrap/dist/css/bootstrap.min.css">
+  <script src="mods/bootstrap/dist/js/bootstrap.min.js"></script>
   
   <script>
     logDebug("#############################  INIT ############################");
     ons.bootstrap()
       .controller('AppController', function() {
       });
-    logDebug("NOVACARD: ons ready");
-    ons.ready(function() {
-        //Populate device info
-        populateDevice();
-        
-        //For geolocation
-        updateGeoPosition();
-       
+    //Plugin cordova-device
+    document.addEventListener("deviceready", onDeviceReady);
+    logDebug("############ NOVACARD: ons ready");
+    ons.ready(function() {       
         logDebug("NOVACARD: initialisation trigger appBar");
         //Capter le changement d'index de la tabbar -- Doit être fait dans ons.ready
         appTab.on("postchange", appTabTrigger);
@@ -80,16 +77,16 @@
         //document.addEventListener('keypress', keyTrigger);
         //Chargement login dans tous les cas 
         loadLogin('');
-        logDebug("FIN ONS.Ready ----");
+        logDebug("########## FIN ONS.Ready");
        
     });
     
     
     
     //Harmoniser le style indépendemment de la plateforme
-    logDebug("NOVACARD: desactiver autostyling");
+    //logDebug("NOVACARD: desactiver autostyling");
     ons.disableAutoStyling();
-    logDebug("NOVACARD: desactiver autostyling -- FIN");
+    //logDebug("NOVACARD: desactiver autostyling -- FIN");
   </script>
 
 </head>
@@ -140,7 +137,7 @@
       <div id="mescartes-content" class="content">
         <div id="mescartes-header">
            <!--Header is displayed only when logged-->
-           <ons-button modifier="mescartes-add" onclick="loadPage({credentials: true, destination:'activer', level:2});"><ons-icon icon="fa-plus-circle"></ons-icon>&nbsp;&nbsp;Ajouter une carte</ons-button>
+           <ons-button modifier="mescartes-add" onclick="loadPage({credentials: true, destination:'activer', level:1});"><ons-icon icon="fa-plus-circle"></ons-icon>&nbsp;&nbsp;Ajouter une carte</ons-button>
            <ons-fab modifier="mescartes-refresh" onclick="loaderOn();setTimeout(function(){loadPage({destination:'consulter', credentials:true, local:true, divId:'#mescartes-body'})},500);"><ons-icon icon="fa-refresh"></ons-icon></ons-fab>
         </div>
         <div id="mescartes-body"></div>

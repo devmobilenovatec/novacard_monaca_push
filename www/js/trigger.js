@@ -1,4 +1,28 @@
 /** TRIGGERS UTILISES SUR LA PAGE PRINCIPALE **/
+function onDeviceReady(){
+	logDebug("################# DEVICE IS READY");
+    //Populate device info
+    populateDevice();
+    //For geolocation
+    updateGeoPosition();
+    //App version
+    updateNumVers();
+}
+
+function updateNumVers(){
+    //Plugin : https://github.com/whiteoctober/cordova-plugin-app-version
+	$("#numvers").html("v"+GLOBAL_appVersion);
+	//<!> Not supported on browser platform <!>
+	cordova.getAppVersion.getVersionNumber(function(version){
+		GLOBAL_appVersion = version;
+		logDebug("NUMERO DE VERSION : "+GLOBAL_appVersion);
+		$("#numvers").html("v"+GLOBAL_appVersion);
+	});
+	
+    //Attrapper l'année
+    var d = new Date();
+    $("#yearvers").html(d.getUTCFullYear());   
+}
 
 function appTabTrigger(){
     logDebug("Trigger changement tab => Active tab "+appTab.getActiveTabIndex());
@@ -15,8 +39,9 @@ function appTabTrigger(){
                     loadPage({destination:'consulter', credentials:true, local: true, divId:"#mescartes-body"});
                 }
                 else{
+                	logDebug("Load login form");
                     //Charger la page de login en page principale
-                    loadPage({destination:'login',withCredentials: false, local: true,divId:'#mescartes-content'});
+                    loadPage({destination:'login', credentials: true, local: true,divId:'#mescartes-content'});
                 }
             },500);
             break;
@@ -67,7 +92,7 @@ function initTrigger(event) {
             //Préféré à l'auto-login
             loadLogin('');
             //SilentLogin fonctionne mais pb de loader
-            //setTimeout(silentLogin,500);
+            //silentLogin();
             //A commenter si silentLogin activé
             //Chargement du formulaire de login
             //setTimeout(function(){loadPage({destination:'login', credentials:false, local:true, divId:'#mescartes-content'})},500);
@@ -286,7 +311,7 @@ function dialogBox(tit, msg, mod, okLabel, okCallback, cancelCallback, argOK, ar
         switch (idx) {
           case 0:
             //En cas d'appui sur Cancel  
-            if(cancelCallBack!=null && typeof cancelCallback !='undefined')
+            if(typeof cancelCallback !='undefined' && cancelCallBack!=null )
                 cancelCallback(argCancel);
             break;
           case 1:

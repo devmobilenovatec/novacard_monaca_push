@@ -326,6 +326,8 @@ function loadPage(options) {
 		logDebug("Local call => " + divId);
 	}
 
+	logDebug("Destination : "+destination.split("&")[0]);
+	
 	// Flusher le contenu de session
 	if (!cLog && GLOBAL_userData == null) {
 		logDebug("No user connected : force logout applied");
@@ -349,19 +351,28 @@ function loadPage(options) {
 		};
 		$.ajax(opts);
 	}
-
-	// logDebug(options);
+	
 	// Si pas encore loggé et page protégée
 	if (GLOBAL_userData == null && cLog) {
 		logDebug("Login required for dest:" + destination);
         //https://onsen.io/v2/docs/angular2/ons-navigator.html#methods-summary
-		var pLength = appNav.pages.length;
-        logDebug("Page stack length :"+pLength);
-        if(pLength>1)
-            appNav.popPage();
-        appNav.pushPage('login', {
-    				animation : anim
-		});
+		
+		switch (destination.split("&")[0]){
+		//Cas où on ne pousse pas en arrière
+		case 'consulter':
+			//Double sécurité, normalement inutile
+			//hidePrivateIcons();	
+			break;
+		default:
+			var pLength = appNav.pages.length;
+	        logDebug("Page stack length :"+pLength);
+	        if(pLength>1)
+	            appNav.popPage();
+	        appNav.pushPage('login', {
+	    				animation : anim
+			});
+	        break;
+		}
         loaderOff();
         return -1;
 	} else {
@@ -514,8 +525,7 @@ function loadPage(options) {
 						// logDebug("Div modifiée :"+$(divId).attr("id")+"
 						// "+divId);
 						// logDebug($(data).find("div#mobile-content").html());
-						$(divId)
-								.html($(data).find("div#mobile-content").html());
+						$(divId).html($(data).find("div#mobile-content").html());
 						if (level > 4)
 							level = 1;
 						adaptContent(destination, level, divId);
@@ -1036,6 +1046,9 @@ function submitForm(formId, level) {
 /**
  * Fonction qui ajoute la carte dont le numéro est passé en paramètre au compte
  * Revu : 2017.04.11 pour nouveau workflow acquisition 
+ * 
+ * level1 => Ajout depuis scan
+ * level2 => Ajout depuis consultation scan
  */
 function addCard(numCarte) {
 	logDebug("ADDCARD: Numero de carte: " + numCarte);
@@ -1068,8 +1081,46 @@ function addCard(numCarte) {
 				}// le gars est connecté mais il a un code a saisir
 				else if (data.estConnecte && data.code.length != 0) {
 					logDebug("[ACTIVATION] Connecté et code à saisir ");
-					//L'envoyer vers une page d'activation
-					//demande_moi_le_code(data.code, data.message, data.message_error);
+					if(data.message_error!=null && data.message_error.length>0){
+						//Erreur à afficher
+						$("#novaform-msg").attr("class","text-danger bg-danger");
+						$("#novaform-msg").html(data.message_error);
+					}else{
+						//L'envoyer vers une page d'activation
+						//Champ input name="code" type="text"
+						var msg =""
+						//route=account/Cartes/activation_ok
+						/**
+						 * Codes de retour
+						 * 1 : email 
+						 * 2 : teléphone
+						 * 3 : date naiss
+						 * 99 : code d'activation
+						 */
+						$("#numCarte").attr("name","code");
+						switch(parseInt(data.code[0])){
+						case 1:
+							msg= "Veuillez saisir votre adresse e-mail";
+							$("#numCarte").mask("");
+							break;
+						case 2:
+							msg= "Veuillez saisir votre numéro de téléphone mobile";
+							$("#numCarte").attr("type","tel");
+							$("#numCarte").mask("9999999999");
+							break;
+						case 99:
+							msg= "Veuillez saisir votre code d'activation";
+							$("#numCarte").attr("type","tel");
+							$("#numCarte").mask("9999");		
+							//Reprendre le cas de soumission classique du formulaire
+							//<!>SO NASTY, KOB, AVENTURA<!>
+							
+							break;
+						}
+						$("#lblNumCarte").html(msg);
+						$("#numCarte").val("");
+						$("#submit").attr("onclick","loaderOn();checkActCode('"+numCarte+"');");
+					}
 					loaderOff();
 				}// le gars n'est pas connecté
 				else if (!data.estConnecte || data.estConnecte == null) {
@@ -1112,6 +1163,57 @@ function addCard(numCarte) {
 	$.ajax(opts);
 }
 
+/**
+ * Vérification du code d'activation pour une carte donnée
+ * Fonction appellée depuis la page d'activation d'une carte
+ */
+
+function checkActCode(numcarte){
+	
+	var destURL = GLOBAL_serverBase+ "index.php?route=account/cartes/activation_ok&m=1";
+    var fData = new FormData();
+    fData.append("num_carte",numcarte);
+    fData.append("code",$("#numCarte").val());
+    var opts = {
+    		url : destURL,
+    		data : fData,
+    		xhrFields : {
+    			withCredentials : true
+    		},
+    		type : 'POST',
+    		dataType : 'html',
+    		success : function(data2) {
+    			var textSuccess = $(data2).find("p.alert-success").html()
+    			if(typeof textSuccess != "undefined" && textSuccess.length>0){
+    				$("#activation_form").html("<p class=\"alert alert-success\" style=\"text-align:center;margin-top:10%;margin-bottom:20%;\"> " +
+    						"Félicitations !<br/> Votre carte  a été liée à votre compte<br/></p>");
+    			}
+    			else{
+    				$("#activation_form").html("<p class=\"text-danger bg-danger\" style=\"text-align:center;margin-top:10%;margin-bottom:20%;\"> " +
+					"Une erreur s'est produite, veuillez réessayer<br/></p>");
+    			}
+    		},
+    		error : function(error) {
+    			logDebug("ERROR: " + error.statusText);
+    			logDebug(error);
+    		},
+    		complete : function() {
+    			loaderOff();
+    		}
+	}
+	if (fData.fake) {
+	// Make sure no text encoding stuff is done by xhr
+	/*
+	 * opts.xhr = function() { var xhr = jQuery.ajaxSettings.xhr();
+	 * logDebug("FORM"); xhr.send = xhr.sendAsBinary; logDebug(xhr); return
+	 * xhr; }
+	 */
+	opts.contentType = "multipart/form-data; boundary=" + fData.boundary;
+	opts.data = fData.toString();
+	}
+	
+	$.ajax(opts)
+}
 /**
  * Opposition d'une carte sur la base de son numéro
  */
@@ -1390,6 +1492,9 @@ function searchEnseignes(nomEns) {
 }
 /**
  * Utilisé dans la partie ajout de carte
+ * 
+ * level1 => depuis scan
+ * level2 => depuis consultation carte
  */
 function verif_existence() {
 	loaderOn();

@@ -233,7 +233,7 @@ h1.heading-title{
     font-weight:normal !important;
 }
 #activation_form div{
-    font-size: 12pt;
+    font-size: 16pt;
     font-weight: bold;
 }
 #activation_form button{
@@ -250,9 +250,9 @@ h1.heading-title{
 }
 
 #donnees input{
-    width: 165%;
-    margin-left: -71%;
+    width: 100%;
     font-size: 15pt;
+    text-align:center;
 }
 
 /*******************CONSULTER MON SOLDE************************/
@@ -603,4 +603,11 @@ h4.recharge-title{
     font-size:7pt;
     text-align:left;
     margin-bottom:10px;
+}
+
+.required label{
+	color: #f00;
+}
+.required input{
+	border: 1px solid #f00;
 }

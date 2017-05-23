@@ -1,5 +1,13 @@
 /*ELEMENTS DE STYLE LIES A l'APPLI UNIQUEMENT (BOUTONS - TEXTE - COULEURS)*/
 
+	/* https://issues.apache.org/jira/browse/CB-1555 
+	*
+	* => Important, pb des champs input password sous android 4.3
+	*/
+	input, textarea {
+  		-webkit-user-select: text !important;
+	}
+	
     .center{
         font-family: 'Lato', sans-serif;
         font-weight: bold;
@@ -51,7 +59,7 @@
     }
  
     .button--barbutton ons-icon{
-       font-size:22pt;
+       font-size:16pt;
        color:#f67b51;
     }
     
@@ -60,7 +68,7 @@
         color: #f67b51;
         position: fixed;
         z-index: 10000;
-        top: 28px;
+        top: 16pt;
         right: 12px;
         font-size: 6pt;
     }
@@ -246,7 +254,8 @@
     .button--scanbarcode ons-icon{
         font-size: 500%;
         display: block !important;
-        margin-top: 13%;
+       	padding-top: 20%;
+       	padding-bottom:6pt;
     }
     .button--scanbarcode span{
         font-size: 13pt;
@@ -265,7 +274,8 @@
     .button--ajoutMan ons-icon{
         font-size: 400%;
         display: block !important;
-        margin-top: 13%;
+        padding-top: 20%;
+    	padding-bottom: 8pt;
     }
     .button--ajoutMan span{
         display: block;
@@ -285,7 +295,8 @@
     .button--rechargeMan ons-icon{
         font-size: 400%;
         display: block !important;
-        margin-top: 13%;
+        padding-top: 20%;
+    	padding-bottom: 8pt;
     }
     .button--rechargeMan span{
         display: block;

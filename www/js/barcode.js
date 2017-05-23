@@ -70,7 +70,7 @@ function scanBarcode() {
 function processBarcode(){
     $("#scanError").html("");
     //Format du codeBarre <urlbase>/index.php?cardID=<numcard>
-    console.log("Code barre lu: "+GLOBAL_barcodeCache);
+    logDebug("Code barre lu: "+GLOBAL_barcodeCache);
     var argList = GLOBAL_barcodeCache.split("?")[1];
     
     //Retirer le dernier caractère
@@ -81,25 +81,37 @@ function processBarcode(){
     var numRezo = -1;
     var cardID = null;
     var typeTransac = null;
+    var expList = argList.split("&");
     
-    $.each(argList.split("&"),function(){
+    //Si le code barre n'est pas au bon format
+    if(expList.length == 0){
+    	$("#scanError").html("Code barre non reconnu");
+    	loaderOff();
+    	return null;
+    }
+    
+    $.each(expList, function(){
         var kVal = this.split("=");
-        fData.append(kVal[0],kVal[1]);
-        
-        if(kVal[0]=="r")
-            numRezo = kVal[1];
-            
-        if(kVal[0]=="cardID")
-            cardID = kVal[1];
-        
-        if(kVal[0]=="typeTransac")
-            typeTransac = kVal[1];
+        if(kVal.length == 2){
+	        fData.append(kVal[0],kVal[1]);
+	        
+	        if(kVal[0]=="r")
+	            numRezo = kVal[1];
+	            
+	        if(kVal[0]=="cardID")
+	            cardID = kVal[1];
+	        
+	        if(kVal[0]=="typeTransac")
+	            typeTransac = kVal[1];
+        }
     });
    
     //console.log("CardID: "+ cardID +" numRezo: "+numRezo);
     if(cardID == null ){
         //Cas de la recharge, pas de card id
-        
+    	 logDebug("PROCESSBARCODE => RECHARGE :");
+    	 logDebug(expList);
+    	 logDebug(fData);
         //Recharger les cartes utilisateurs
         loadCartes();
         
@@ -110,7 +122,7 @@ function processBarcode(){
             if(typeof GLOBAL_cardList[numRezo][0] !== "undefined"){
                 
                 fData.append("numCarte",(GLOBAL_cardList[numRezo][0]).replace(/ /g,""));
-                console.log("PROCESSBARCODE => "+GLOBAL_cardList[numRezo][0]);
+                logDebug("PROCESSBARCODE RECHARGE => CARTE CHOISIE:"+GLOBAL_cardList[numRezo][0]);
                 var destURL = GLOBAL_serverBase+"index.php?route=account/cartes/rechargement_ok&m=1";
                 var opts={
                     url: destURL,
@@ -122,21 +134,27 @@ function processBarcode(){
                         //console.log(data2);
                         if(data2.success){
                             //CAS OK
+                        	logDebug("PROCESSBARCODE RECHARGE => Recharge OK");
                             $("#scanError").html("Félicitations, votre recharge est comptabilisée !");
                             //Recharger la page des cartes
                             loadPage({destination:'consulter', credentials:true, local: true, divId:"#mescartes-body", timerAjust:3500});
                             appTab.setActiveTab(0);
                         }
                         else{
-                            if(typeof data2.msg !== "undefined")
+                            if(typeof data2.msg !== "undefined"){
+                            	logDebug("PROCESSBARCODE RECHARGE => Recharge KO :"+data2.msg);
                                 $("#scanError").html("Attention: " +data2.msg);
-                            else
+                            }
+                            else{
+                            	logDebug("PROCESSBARCODE RECHARGE => Recharge KO :"+data2.error_description);
                                 $("#scanError").html("Attention: " +data2.error_description);
+                            }
                         }
                         loaderOff();
                     },
                     error: function(error){
                         //Retour à la page d'erreur
+                    	logDebug("PROCESSBARCODE RECHARGE => Erreur recharge :"+error.responseText);
                         $("#scanError").html("Erreur recharge:"+error.responseText);
                         loaderOff();
                 }};
@@ -164,11 +182,13 @@ function processBarcode(){
                 }
             }
             else{
+            	logDebug("Recharge : Aucune carte disponible pour la recharge scannée !");
                 $("#scanError").html("Aucune carte disponible pour la recharge scannée !");
                 loaderOff();                
             }
         }
         else{
+        	logDebug("Recharge : Aucune carte disponible pour la recharge scannée [2] !");
             $("#scanError").html("Aucune carte disponible pour la recharge scannée !");
             loaderOff();
         }
@@ -181,6 +201,8 @@ function processBarcode(){
                     //Init
                 default:
                     //Cas d'un ajout de carte
+                	logDebug("[ACTIVATION] Cas ajout de carte");
+                	loadPage({destination: 'activer', credentials: false});
                     addCard(cardID);
                 break;
             }
@@ -188,6 +210,8 @@ function processBarcode(){
         }
         else{
           //Cas d'un ajout de carte
+          logDebug("[ACTIVATION] Cas ajout de carte");
+          loadPage({destination: 'activer', credentials: false});
           addCard(cardID);    
         } 
     }

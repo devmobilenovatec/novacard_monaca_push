@@ -5,46 +5,50 @@
  *  => MP - 2017.01.30 -- Première release 
  * /
  */
+//Version
+var GLOBAL_appVersion="1.X.X";
+
 // BARCODE 
 var GLOBAL_barcodeCache="";
 
 // AUTHENTIFICATION - OPEN CART
 var GLOBAL_authToken="";
 
-//IDCADO
-//var GLOBAL_apiKey="4q5FqOWcVreulepcykW6rcHWGTaK46S5CTomlTtjE0I3MPpzeFgOWBRsUc4GhPdhAncKUtRO6Lkijf6BuPeqt4RqzLI1YQxVBmPhCKKsb8RwWtEH1Y43HmDx2EQWcNot26k4kN6wDwYp1i5pY1p3CMEJGS6oN8FZcXhpIz8Z3P6td4JCmuH11sRc1uNdtvvTKt2hUfctKi0jIbzcKISJwfekQDMweykWmfCeWHd6YC4JlhZV7Qlaw4MrsYC7VTy5";
-//var GLOBAL_apiName="MobileApp";
-//var GLOBAL_serverBase = "https://dev.novacorp.fr/idcado_dev/";
+//TURN ON OR OFF DEBUG MSG
+var GLOBAL_Debug = true;
+var GLOBAL_logserverURL = "http://dev.novacorp.fr/novacard_log/logger.php"
+var GLOBAL_sendLogs = true;
 
 //NOVACARD
+//<!> DEPRECATED <!>
 var GLOBAL_apiKey="z1U4RfK6PA2PY8Ajc1r0PbzFQX7HpaYmSPf04zGTZ61nfGgenbqQ88RcgScwa78qSBaOTokKjCEeylCk2rdTFTkK0A8cAiUnQbXcHGNaYt5qF44pRVyw8uO0FjG1n0UZUkP23wRycx1YxPvMT7zRZgPtWtU3Q1K6eutqg5pmRC18bHTMDTA6gEAq8YEuZh8TT1LJQhsGQFgEfsgySB31B1OJrYd7ZcMuyDGV14j8Tzmnr6FfsqFzJwknWiUlomvf";
 var GLOBAL_apiName="MobileApp";
-var GLOBAL_serverBase = "https://dev.novacorp.fr/novacard/";
+//<!> DEPRECATED <!>
+
+var GLOBAL_serverBase = "https://orion.novacorp.fr/novacard/";
 //var GLOBAL_serverBase = "https://orion.novacorp.fr/novacard/";
 //Used for geolocation
-var GLOBAL_eurofidBase = "https://dev.novacorp.fr/eurofid-preprod/";
+var GLOBAL_eurofidBase = "https://orion.novacorp.fr/eurofid/";
+
 //var GLOBAL_eurofidBase = "https://orion.novacorp.fr/eurofid/";
 
 
 var GLOBAL_apiId="";
 
-
+//<!>DEPRECATED<!>
 var GLOBAL_credFilename = "Novacard_logon.json";
+//<!> DEPRECATED <!>
 //Alimenté par la fonction de login
 var GLOBAL_credFilecontent = null;
 var GLOBAL_credFileLength = 300;
 var GLOBAL_loginRes = {success:false , msg:""} ;
-var GLOBAL_device = {os:"", version:"", model:""};
+var GLOBAL_device = {os:"", version:"", model:"", serial:""};
 var GLOBAL_cardList = [];
 var GLOBAL_userData = null;
 
 
 // GEOLOCATION
 var GLOBAL_geoPosition = {longitude:null, latitude:null, accuracy:null, altitudeAccuracy:null, heading:null, speed:null, timestamp:null, Map:null};
-
-//TURN ON OR OFF DEBUG MSG
-var GLOBAL_Debug =1;
-
 
 function loaderOn() {
     logDebug("LoaderOn");
@@ -59,32 +63,27 @@ function loaderOff() {
 
 function populateDevice (){
     //console.log(device.cordova);
-    GLOBAL_device.os = device.platform;
-    GLOBAL_device.version = device.version;
-    GLOBAL_device.model = device.model;
-    logDebug(GLOBAL_device);
+	
+	if(typeof device !== "undefined"){
+	    GLOBAL_device.os = device.platform;
+	    GLOBAL_device.version = device.version;
+	    GLOBAL_device.model = device.model;
+	    GLOBAL_device.serial = device.uuid;
+	}
+	else if(GLOBAL_device.serial.length == 0){
+		var date = new Date(Date.now());
+		//Cas ou le plugin device ne fonctionne pas
+		GLOBAL_device.os = "UNKNOWN";
+		GLOBAL_device.serial = date.getFullYear()+"." + 
+		handleSingleDigit(date.getMonth()+1) + "."
+        + handleSingleDigit(date.getDate()) + "."
+        + handleSingleDigit(handleHours(date.getHours())) + 
+        + handleSingleDigit(date.getMinutes()) + 
+        + handleSingleDigit(date.getSeconds());
+	}
+    //logDebug(GLOBAL_device);
 }
 
-function updateNumVers(){
-    //En attendant les bons plugins cordova (pas dans le répo de base monaca)
-    //Fait "dirty" à la main
-    //So NasTy
-    $("#numvers").html("v1.1.9");
-    $.get("../config.xml",function(data){
-        //console.log(data);
-        var wid=$(data).find("widget");
-        console.log($(wid).attr("version"));
-        if(typeof $(wid).attr("version") !== "undefined" )
-            $("#numvers").html($(wid).attr("version"));
-        else
-            $("#numvers").html("v1.1.10");
-    })
-    
-    //Attrapper l'année
-    var d = new Date();
-    $("#yearvers").html(d.getUTCFullYear());
-    //K.O.B Aventura
-}
 
 function getFormattedDate(format) {
     var date = new Date(Date.now()),
@@ -115,7 +114,8 @@ function handleHours(hours) {
 }
 
 function logDebug(message){
-    if(GLOBAL_Debug){
+	//Pour une lecture des logs en local
+    if(GLOBAL_Debug && !GLOBAL_sendLogs){
         var date = getFormattedDate();
         var callerName = "undefined";
         if(arguments.callee.caller != null)
@@ -128,5 +128,43 @@ function logDebug(message){
         else{
         	console.log("["+date+"]["+callerName+"]"+message);
         }
+    }
+    
+    if(GLOBAL_sendLogs){
+    	//Send logs through an ajax async call
+        var date = getFormattedDate();
+        var callerName = "undefined";
+        if(arguments.callee.caller != null)
+            callerName = arguments.callee.caller.name;
+        
+    	populateDevice();
+    	var device = GLOBAL_device.model+"_"+GLOBAL_device.os+"_"+GLOBAL_device.version;
+    	var serial = GLOBAL_device.serial;
+    	var msg = "";
+    	if(typeof message != "string"){
+        	msg="["+date+"]["+callerName+"]["+GLOBAL_appVersion+"] Objet passé : "+JSON.stringify(message);
+        	
+        }
+        else{
+        	msg="["+date+"]["+callerName+"]["+GLOBAL_appVersion+"]"+message;
+        }
+    	
+    	//ASYNC AJAX CALL
+    	var postData = {
+    		"serial" : serial,
+    		"device" : device,
+    		"log": msg
+    	};
+		$.ajax({
+			type : "POST",
+			url : GLOBAL_logserverURL ,
+			data : postData,
+			success : function(data) {
+			},
+			error : function(error){
+				
+			},
+			dataType : "html"
+		});
     }
 }

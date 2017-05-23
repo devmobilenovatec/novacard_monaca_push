@@ -200,19 +200,11 @@
     logDebug("Loading login info");
     var fileContent = null;
     loaderOn();
-    //console.log();
-    //try{
-        GLOBAL_credFilecontent = readLoginLS("last");
-        //readLogin(GLOBAL_credFilename);
-    //}
-    /*catch(e){
-       loaderOff();
-       logDebug("La fonctionnalité de stockage du login n'est pas disponible sur votre appareil");
-       return -1; 
-    }*/
+    GLOBAL_credFilecontent = readLoginLS("last");
+   
     setTimeout(function(){
-     // try{
-            if(GLOBAL_credFilecontent !== null){
+   
+    	if(GLOBAL_credFilecontent !== null){
             	//Cacher les champs de login / mdp
             	$("#login-form"+complement+" h3").html("");
             	$("#login"+complement).attr("type","hidden");
@@ -229,25 +221,11 @@
                 $("#login-forgotten"+complement).attr("onclick","appNav.pushPage('login');");
                 $("#login-recall").remove();
                 $("#login-submit").attr("style","margin-left:0 !important");
-            }
-            else{
+            }else{
             	logDebug("[LOGIN] Impossible de trouver les informations de login");
             	$("#login-msg"+complement).attr("class","text-info bg-info");
                 $("#login-msg"+complement).html("Veuillez saisir votre identifiant<br/> et votre mot de passe");
             }
-        //}
-        /*catch(e){
-            if (e.name == 'TypeError'){
-               loaderOff();
-               logDebug("Erreur sur le type des données accedées");
-               return -1;
-            }
-            else{
-                loaderOff();
-                logDebug("Erreur de chargement des credentials "+e.name);
-                return -1;
-            }
-        } */
         loaderOff();
     }, 500);
     return 0;
@@ -398,6 +376,7 @@ function postLogin(){
  //permet de se déconnecter
  function logout(){
      GLOBAL_loginRes.success=false;
+     GLOBAL_userData = null;
      loaderOn();
      loadPage({destination:'logout', credentials:true, 'silent':true});
      hidePrivateIcons();
@@ -425,4 +404,12 @@ function postLogin(){
     $(".button--public").each(function(index,value){
         $(this).attr("style","");
     });
+    
+    //Remettre le login form d'applomb
+    $("#mescartes-header").attr("class","hidden");
+	$("#mescartes-body").attr("class","hidden");
+	$("#login-form").attr("class","");
+	$("#login-msg").attr("class","");
+	$("#login-msg").html(" ");
+	
   }
