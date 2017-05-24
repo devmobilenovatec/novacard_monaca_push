@@ -16,8 +16,8 @@ var GLOBAL_authToken="";
 
 //TURN ON OR OFF DEBUG MSG
 var GLOBAL_Debug = true;
-var GLOBAL_logserverURL = "http://dev.novacorp.fr/novacard_log/logger.php"
-var GLOBAL_sendLogs = false;
+var GLOBAL_logserverURL = "https://dev.novacorp.fr/novacard_log/logger.php"
+var GLOBAL_sendLogs = true;
 
 //NOVACARD
 //<!> DEPRECATED <!>
@@ -25,10 +25,10 @@ var GLOBAL_apiKey="z1U4RfK6PA2PY8Ajc1r0PbzFQX7HpaYmSPf04zGTZ61nfGgenbqQ88RcgScwa
 var GLOBAL_apiName="MobileApp";
 //<!> DEPRECATED <!>
 
-var GLOBAL_serverBase = "https://orion.novacorp.fr/novacard/";
+var GLOBAL_serverBase = "https://dev.novacorp.fr/novacard/";
 //var GLOBAL_serverBase = "https://orion.novacorp.fr/novacard/";
 //Used for geolocation
-var GLOBAL_eurofidBase = "https://orion.novacorp.fr/eurofid/";
+var GLOBAL_eurofidBase = "https://dev.novacorp.fr/eurofid/";
 
 //var GLOBAL_eurofidBase = "https://orion.novacorp.fr/eurofid/";
 

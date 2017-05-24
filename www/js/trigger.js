@@ -13,11 +13,12 @@ function updateNumVers(){
     //Plugin : https://github.com/whiteoctober/cordova-plugin-app-version
 	$("#numvers").html("v"+GLOBAL_appVersion);
 	//<!> Not supported on browser platform <!>
-	cordova.getAppVersion.getVersionNumber(function(version){
-		GLOBAL_appVersion = version;
+    //Activable only if cordova-plugin-app-version is added
+	/*cordova.getAppVersion.getVersionNumber(function(version){
+    	GLOBAL_appVersion = version;
 		logDebug("NUMERO DE VERSION : "+GLOBAL_appVersion);
 		$("#numvers").html("v"+GLOBAL_appVersion);
-	});
+	});*/
 	
     //Attrapper l'année
     var d = new Date();
