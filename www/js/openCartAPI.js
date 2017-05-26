@@ -177,12 +177,14 @@ function loginF(username, password, postFunction) {
 					username : username,
 					password : password
 				};
+                GLOBAL_isLogged = true;
 				// appNav.popPage();
 			}
 			// loaderOff();
 		},
 		error : function(req, textStatus, errorThrown) {
 			appNav.pushPage("unavailable");
+            GLOBAL_isLogged=false;
 			var motif = "";
 			if (req.readyState == 4) {
 				// HTTP error (can be checked by XMLHttpRequest.status and
@@ -329,7 +331,7 @@ function loadPage(options) {
 	logDebug("Destination : "+destination.split("&")[0]);
 	
 	// Flusher le contenu de session
-	if (!cLog && GLOBAL_userData == null) {
+	if (!cLog && !GLOBAL_isLogged) {
 		logDebug("No user connected : force logout applied");
 		var destURL = GLOBAL_serverBase + "index.php?route=account/logout&m=1";
 		var opts = {
@@ -353,8 +355,11 @@ function loadPage(options) {
 	}
 	
 	// Si pas encore loggé et page protégée
-	if (GLOBAL_userData == null && cLog) {
+	if (!GLOBAL_isLogged && cLog) {
 		logDebug("Login required for dest:" + destination);
+        logDebug("User data : ");
+        logDebug(GLOBAL_userData);
+        logDebug("cLog :"+cLog);
         //https://onsen.io/v2/docs/angular2/ons-navigator.html#methods-summary
 		
 		switch (destination.split("&")[0]){
