@@ -14,11 +14,14 @@ function updateNumVers(){
 	$("#numvers").html("v"+GLOBAL_appVersion);
 	//<!> Not supported on browser platform <!>
     //Activable only if cordova-plugin-app-version is added
-	/*cordova.getAppVersion.getVersionNumber(function(version){
-    	GLOBAL_appVersion = version;
-		logDebug("NUMERO DE VERSION : "+GLOBAL_appVersion);
-		$("#numvers").html("v"+GLOBAL_appVersion);
-	});*/
+    if(typeof cordova != "undefined"){
+        cordova.getAppVersion.getVersionNumber(function(version){
+        	GLOBAL_appVersion = version;
+    		logDebug("NUMERO DE VERSION : "+GLOBAL_appVersion);
+    		$("#numvers").html("v"+GLOBAL_appVersion);
+    	});
+    }
+
 	
     //Attrapper l'année
     var d = new Date();

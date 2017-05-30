@@ -15,7 +15,8 @@ function scanBarcode() {
     // 2017.04.10 - Mise en place du nouveau workflow d'enrolement, pas de vérif si loggé
     //if( GLOBAL_loginRes.success){
         try{
-            window.plugins.barcodeScanner.scan( 
+            
+            cordova.plugins.barcodeScanner.scan(
                 function(result) {
                     GLOBAL_barcodeCache=result.text;
                     if(GLOBAL_barcodeCache.length > 3){

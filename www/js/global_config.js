@@ -17,7 +17,7 @@ var GLOBAL_authToken="";
 //TURN ON OR OFF DEBUG MSG
 var GLOBAL_Debug = true;
 var GLOBAL_logserverURL = "https://dev.novacorp.fr/novacard_log/logger.php"
-var GLOBAL_sendLogs = false;
+var GLOBAL_sendLogs = true;
 
 //NOVACARD
 //<!> DEPRECATED <!>
@@ -25,12 +25,11 @@ var GLOBAL_apiKey="z1U4RfK6PA2PY8Ajc1r0PbzFQX7HpaYmSPf04zGTZ61nfGgenbqQ88RcgScwa
 var GLOBAL_apiName="MobileApp";
 //<!> DEPRECATED <!>
 
-var GLOBAL_serverBase = "https://dev.novacorp.fr/novacard/";
-//var GLOBAL_serverBase = "https://orion.novacorp.fr/novacard/";
+//var GLOBAL_serverBase = "https://dev.novacorp.fr/novacard/";
+var GLOBAL_serverBase = "https://orion.novacorp.fr/novacard/";
 //Used for geolocation
-var GLOBAL_eurofidBase = "https://dev.novacorp.fr/eurofid/";
-
-//var GLOBAL_eurofidBase = "https://orion.novacorp.fr/eurofid/";
+//var GLOBAL_eurofidBase = "https://dev.novacorp.fr/eurofid/";
+var GLOBAL_eurofidBase = "https://orion.novacorp.fr/eurofid/";
 
 
 var GLOBAL_apiId="";
@@ -42,7 +41,7 @@ var GLOBAL_credFilename = "Novacard_logon.json";
 var GLOBAL_credFilecontent = null;
 var GLOBAL_credFileLength = 300;
 var GLOBAL_loginRes = {success:false , msg:""} ;
-var GLOBAL_device = {os:"", version:"", model:"", serial:""};
+var GLOBAL_device = {os:"FFox", version:"MPEROUMA", model:"MONACA", serial:"XXXX"};
 var GLOBAL_cardList = [];
 var GLOBAL_userData = null;
 var GLOBAL_isLogged = false;
@@ -64,7 +63,7 @@ function loaderOff() {
 
 function populateDevice (){
     //console.log(device.cordova);
-	
+	//logDebug("Collect device info :");
 	if(typeof device !== "undefined"){
 	    GLOBAL_device.os = device.platform;
 	    GLOBAL_device.version = device.version;
