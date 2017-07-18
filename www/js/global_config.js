@@ -6,7 +6,7 @@
  * /
  */
 //Version
-var GLOBAL_appVersion="1.1.22_MONACA";
+var GLOBAL_appVersion="1.1.24_MONACA";
 
 // BARCODE 
 var GLOBAL_barcodeCache="";
@@ -25,11 +25,11 @@ var GLOBAL_apiKey="z1U4RfK6PA2PY8Ajc1r0PbzFQX7HpaYmSPf04zGTZ61nfGgenbqQ88RcgScwa
 var GLOBAL_apiName="MobileApp";
 //<!> DEPRECATED <!>
 
-//var GLOBAL_serverBase = "https://dev.novacorp.fr/novacard/";
-var GLOBAL_serverBase = "https://orion.novacorp.fr/novacard/";
+var GLOBAL_serverBase = "https://dev.novacorp.fr/novacard/";
+//var GLOBAL_serverBase = "https://orion.novacorp.fr/novacard/";
 //Used for geolocation
-//var GLOBAL_eurofidBase = "https://dev.novacorp.fr/eurofid/";
-var GLOBAL_eurofidBase = "https://orion.novacorp.fr/eurofid/";
+var GLOBAL_eurofidBase = "https://dev.novacorp.fr/eurofid/";
+//var GLOBAL_eurofidBase = "https://orion.novacorp.fr/eurofid/";
 
 
 var GLOBAL_apiId="";
