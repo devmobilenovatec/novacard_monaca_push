@@ -28,105 +28,6 @@ function updateNumVers(){
     $("#yearvers").html(d.getUTCFullYear());   
 }
 
-function appTabTrigger(){
-    logDebug("Trigger changement tab => Active tab "+appTab.getActiveTabIndex());
-    switch(appTab.getActiveTabIndex()){
-        case 0: 
-            //Onglet mes cartes
-            loaderOn();
-            setTimeout(function(){
-                if(GLOBAL_userData != null){
-                    logDebug("Load cards");
-                    //Charger les cartes existantes
-                    //loadCartes();
-                    //Timeout pour permettre que le popPage s'exécute
-                    loadPage({destination:'consulter', credentials:true, local: true, divId:"#mescartes-body"});
-                }
-                else{
-                	logDebug("Load login form");
-                    //Charger la page de login en page principale
-                    loadPage({destination:'login', credentials: true, local: true,divId:'#mescartes-content'});
-                }
-            },500);
-            break;
-        //Scan Barcode
-        case 1: 
-            scanBarcode();
-        break;
-        
-        case 2:
-            //Enseignes
-            var ensContent = $("#enseignes-content").html().trim(); 
-            //logDebug("X"+ensContent+"X");
-            if(ensContent.length==0){
-                loadPage({destination:'enseignes', credentials:false, local:true, divId:'#enseignes-content', timerAjust:7000});
-                loaderOn();
-            }
-            break;
-        //Mon compte
-        case 3: 
-            loaderOn();
-            updateNumVers();
-            setTimeout(function(){
-                if(GLOBAL_loginRes.success){
-                    loadPage({destination:'profile', credentials:true});
-                }else{
-                    loadPage({destination:'register', credentials:false, force_logout: true});
-                }
-            },500);
-        break;    
-        default:
-            //logDebug("TABCHANGE:"+appTab.getActiveTabIndex());
-        break;
-    }
-}
-
-function initTrigger(event) {
-    var page = event.target;
-    //https://github.com/angular/angular.js/issues/7981
-    //logDebug("Trigger init => evenement angular "+page.ng339);
-    try{
-        if (page.matches('#login-page')) {
-            //Déclencher le chargement des informations de login
-            //loadLogin('2');
-        }
-        if (page.matches('#main-page')) {
-            //Déclencher l'autoLogin
-            loaderOn();
-            //Préféré à l'auto-login
-            loadLogin('');
-            //SilentLogin fonctionne mais pb de loader
-            //silentLogin();
-            //A commenter si silentLogin activé
-            //Chargement du formulaire de login
-            //setTimeout(function(){loadPage({destination:'login', credentials:false, local:true, divId:'#mescartes-content'})},500);
-            //Déclencher le chargement des enseignes
-            loadPage({destination:'enseignes', credentials:false, local:true, divId:'#enseignes-content', timerAjust:7000});
-        }
-    }catch(e){
-    	//Versions d'android antérieures à la 5.0
-         if (e.name == 'TypeError'){
-            logDebug("[ATTENTION] Votre version d'android ou d'Ios peut présenter des incompatibilités avec l'application ");
-            logDebug("[ATTENTION] Silent Login indisponible");
-            logDebug("[ATTENTION] Tentative de chargement des credentials");
-        	loaderOn();
-            //Préféré à l'auto-login
-            loadLogin('');
-            if(page.ng339 == 16){
-            	logDebug("[ATTENTION] Chargement pages");
-                setTimeout(function(){loadPage({destination:'login', credentials:false, local:true, divId:'#mescartes-content'})},500);
-                $("#login-msg").attr("class","danger bg-danger");
-                $("#login-msg").html("Attention, votre système n'est pas pleinement compatible avec l'application.");
-                //Déclencher le chargement des enseignes
-                loadPage({destination:'enseignes', credentials:false, local:true, divId:'#enseignes-content', timerAjust:7000});
-            }
-            else{
-            }
-            return -1;
-         }
-    }
-}
-
 function keyTrigger( event ) {
   //https://developer.mozilla.org/fr/docs/Web/API/KeyboardEvent
  //Problème rencontré similaire à ici : http://stackoverflow.com/questions/13913834/weird-issue-with-phonegap-2-2-predictive-text-and-input-type-text-on-android
@@ -208,7 +109,19 @@ function appTabTrigger(){
                     loadPage({destination:'register', credentials:false, force_logout: true});
                 }
             },500);
-        break;    
+        break;
+         //Onglet Bon plans
+        case 4:
+           loaderOn();
+            setTimeout(function(){
+                if(GLOBAL_loginRes.success){
+                    loadPage({destination:'bonplan', credentials:true, local:true, divId:'#bonplan-content'});
+                }else{
+                    loadPage({destination:'register', credentials:false, force_logout: true, local:true, divId:'#bonplan-content'});
+                }
+            },500);
+            
+        break;
         default:
             //logDebug("TABCHANGE:"+appTab.getActiveTabIndex());
         break;

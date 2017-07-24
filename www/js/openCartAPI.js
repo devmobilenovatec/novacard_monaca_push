@@ -432,6 +432,11 @@ function loadPage(options) {
 			destURL += "product/category&path=59&m=1";
 			title = "Commander";
 			break;
+        case 'bonplan':
+        case 'account/Cartes/bonsplans':
+            destURL += "account/Cartes/bonsplans&m=1";
+    		title = "Coupons";
+			break;
 		case 'cgu':
 			destURL += "information/information&information_id=5&m=1";
 			title = "C.G.U.";
