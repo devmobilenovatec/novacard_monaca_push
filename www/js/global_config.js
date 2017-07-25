@@ -32,7 +32,7 @@ var GLOBAL_eurofidBase = "https://dev.novacorp.fr/eurofid/";
 //var GLOBAL_eurofidBase = "https://orion.novacorp.fr/eurofid/";
 
 //Directory coupontools
-var GLOBAL_couponDirectory = "https://couponapp.directory/index.php?dir=ywNgjMmTDVMKtKZF9ZHKa&app=true"; 
+//var GLOBAL_couponDirectory = "https://couponapp.directory/index.php?dir=ywNgjMmTDVMKtKZF9ZHKa&app=true"; 
 
 var GLOBAL_apiId="";
 
