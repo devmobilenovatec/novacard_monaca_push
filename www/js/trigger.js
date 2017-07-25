@@ -117,7 +117,14 @@ function appTabTrigger(){
                 if(GLOBAL_loginRes.success){
                     loadPage({destination:'bonplan', credentials:true, local:true, divId:'#bonplan-content'});
                 }else{
-                    loadPage({destination:'register', credentials:false, force_logout: true, local:true, divId:'#bonplan-content'});
+                    //loadPage({destination:'register', credentials:false, force_logout: true, local:true, divId:'#bonplan-content'});
+                    //Load coupon directory from coupontools
+                    appNav.pushPage("generic-divbp");
+                    setTimeout(function(){
+                        $("#bonplan-frame").attr("src",GLOBAL_couponDirectory); 
+                        $("#bonplan-frame").attr("style","width:100%; height:95%;")
+                    },500);
+                    
                 }
             },500);
             
