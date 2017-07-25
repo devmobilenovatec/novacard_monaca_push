@@ -26,6 +26,7 @@
   <script src="js/login.js"></script>
   <script src="js/trigger.js"></script>
   <script src="js/barcode.js"></script>
+  <script src="js/bonplans.js"></script>
   <!-- FIN PERSONNALISATION -->
   
   <!-- Google fonts -->
@@ -353,6 +354,17 @@
         </ons-page>
     </ons-template>
     
+    <ons-template id="generic-divbp">
+        <ons-page>
+        <ons-toolbar>
+              <ons-button modifier="pBack" onclick="appNav.popPage();"><ons-icon icon="fa-chevron-circle-left"></ons-icon></ons-button>    
+        </ons-toolbar>
+        
+        <div id="gen-content-divbp" class="content">
+            <iframe id="bonplan-frame" src="" onload="setTimeout(function(){loaderOff()},4000);"></iframe>
+        </div>
+        </ons-page>
+    </ons-template>
     
     <ons-template id="generic-div1">
         <ons-page>

@@ -909,6 +909,23 @@ function adaptContent(destination, level, divId) {
         //Edition de l'adresse
         case "account/address/edit":
             break;
+        //Cas des bons plans
+        case 'bonplan':
+        case 'account/Cartes/bonsplans':
+            logDebug("Destination :"+ destination.split("&")[0] +" adaptation");
+            //Adaptation des images
+            var img = $.find(".bonplan img");
+            $(img).each(
+				function() {
+                    var serverPathL = GLOBAL_serverBase.length;
+                    $(this).attr("src", $(this).attr("src").substring(serverPathL, $(this).attr("src").length));
+				}
+            );
+            //Retrait de l'iframe
+            var iframe = $.find("#bonplan-frame");
+            $(iframe).remove();
+            
+            break;
         default:
             logDebug("Destination :"+ destination.split("&")[0] +" aucune modification du DOM prévue !");
             break;

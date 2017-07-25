@@ -6,7 +6,7 @@
  * /
  */
 //Version
-var GLOBAL_appVersion="1.1.24_MONACA";
+var GLOBAL_appVersion="1.1.25_MONACA";
 
 // BARCODE 
 var GLOBAL_barcodeCache="";
@@ -17,7 +17,7 @@ var GLOBAL_authToken="";
 //TURN ON OR OFF DEBUG MSG
 var GLOBAL_Debug = true;
 var GLOBAL_logserverURL = "https://dev.novacorp.fr/novacard_log/logger.php"
-var GLOBAL_sendLogs = false;
+var GLOBAL_sendLogs = true;
 
 //NOVACARD
 //<!> DEPRECATED <!>
