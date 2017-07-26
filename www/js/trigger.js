@@ -117,6 +117,7 @@ function appTabTrigger(){
                 if(GLOBAL_loginRes.success){
                     loadPage({destination:'bonplan', credentials:true, local:true, divId:'#bonplan-content'});
                 }else{
+                    //Chargement page enregistrement
                     loadPage({destination:'register', credentials:false, force_logout: true, local:true, divId:'#bonplan-content'});
                     //Load coupon directory from coupontools
                     //appNav.pushPage("generic-divbp");

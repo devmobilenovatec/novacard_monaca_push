@@ -2,7 +2,7 @@
  * INFORMATIONS GLOBALES DE CONFIGURATION DE L'APPLICATION
  * 
  * Derniere modif : 
- *  => MP - 2017.01.30 -- Première release 
+ *  => MP - 2017.07.26 -- Ajout url directory coupontools (DESACTIVE) 
  * /
  */
 //Version
@@ -17,7 +17,7 @@ var GLOBAL_authToken="";
 //TURN ON OR OFF DEBUG MSG
 var GLOBAL_Debug = true;
 var GLOBAL_logserverURL = "https://dev.novacorp.fr/novacard_log/logger.php"
-var GLOBAL_sendLogs = true;
+var GLOBAL_sendLogs = false;
 
 //NOVACARD
 //<!> DEPRECATED <!>
@@ -32,7 +32,7 @@ var GLOBAL_eurofidBase = "https://dev.novacorp.fr/eurofid/";
 //var GLOBAL_eurofidBase = "https://orion.novacorp.fr/eurofid/";
 
 //Directory coupontools
-//var GLOBAL_couponDirectory = "https://couponapp.directory/index.php?dir=ywNgjMmTDVMKtKZF9ZHKa&app=true"; 
+var GLOBAL_couponDirectory = "https://couponapp.directory/index.php?dir=ywNgjMmTDVMKtKZF9ZHKa&app=true"; 
 
 var GLOBAL_apiId="";
 

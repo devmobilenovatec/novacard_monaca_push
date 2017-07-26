@@ -611,3 +611,36 @@ h4.recharge-title{
 .required input{
 	border: 1px solid #f00;
 }
+
+/** BONS PLANS **/
+.bonplan{
+    border: 4px solid #ddd;
+    width: 70%;
+    height: 50%;
+    margin-left: 15%;
+    margin-bottom: 20px;
+    overflow-y: hidden;
+}
+
+.bonplan span{
+    text-transform: uppercase;
+    display: block;
+    background-color: #ddd;
+    text-align: center;
+    font-weight: bold;
+    font-size: 10pt;
+    padding-top: 3px;
+    padding-bottom: 4px;
+}
+
+.bonplan img{
+    max-width: 100%;
+    min-height: 30%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#bonplan-frame{
+    height: 90%;
+    margin-left: 8px;
+}
