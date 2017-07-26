@@ -8,3 +8,28 @@ function showBp(el, url){
         $("#bonplan-frame").attr("src",url);    
     },500);
 }
+
+function updateBpList(numRes){
+    logDebug("Show only "+numRes);
+	if(numRes !=-1)
+	{
+		$(".bonplan").each(
+				function(){
+					if($(this).attr("class").indexOf(numRes)!=-1)
+						//$(this).removeClass("hidden");
+						$(this).fadeIn(500);
+					else
+						//$(this).addClass("hidden");
+						$(this).fadeOut(500);
+				}
+		);
+	}
+	else{
+		$(".bonplan").each(
+				function(){
+					//$(this).removeClass("hidden");
+					$(this).fadeIn(500);
+				}
+		);
+	}
+}

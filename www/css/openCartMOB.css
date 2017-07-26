@@ -644,3 +644,14 @@ h4.recharge-title{
     height: 90%;
     margin-left: 8px;
 }
+
+#select-bp{
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #f67b51;
+    color: #f67b51;
+
+}

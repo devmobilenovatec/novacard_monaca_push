@@ -925,6 +925,9 @@ function adaptContent(destination, level, divId) {
             var iframe = $.find("#bonplan-frame");
             $(iframe).remove();
             
+            var select = $.find("#select-bp");
+            $(select).attr("onchange","updateBpList($(this).val());");
+            
             break;
         default:
             logDebug("Destination :"+ destination.split("&")[0] +" aucune modification du DOM prévue !");
