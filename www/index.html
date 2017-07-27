@@ -77,6 +77,8 @@
         //document.addEventListener('keypress', keyTrigger);
         //Chargement login dans tous les cas 
         loadLogin('');
+        //Chargement coupontools dir
+        loadCToolsDir();
         logDebug("########## FIN ONS.Ready");
        
     });
@@ -102,11 +104,11 @@
       </div>     
     </ons-toolbar>
     <ons-tabbar var="appTab" position="bottom" >
-      <ons-tab page="mescartes" label="Mes cartes" icon="fa-credit-card" active></ons-tab>
+      <ons-tab page="mescartes" label="Mes cartes" icon="fa-credit-card"></ons-tab>
       <ons-tab page="scan" label="Scanner" icon="fa-qrcode"></ons-tab>
       <ons-tab page="enseignes" label="Enseignes" icon="fa-shopping-bag"></ons-tab>
       <ons-tab page="compte" label="Compte" icon="fa-user" ></ons-tab>
-      <ons-tab page="bonplan" label="Bons plans" icon="fa-gift"></ons-tab>
+      <ons-tab page="bonplan" label="Bons plans" icon="fa-gift" active></ons-tab>
     </ons-tabbar>
   </ons-page>
  </ons-navigator>
@@ -350,7 +352,7 @@
     <!-- PAGES SOUS-CATEG - BON PLANS -->
     <ons-template id="bonplan">
         <ons-page>
-            <iframe id="bonplan-frame" src="" onload="setTimeout(function(){loaderOff()},4000);"></iframe>
+           <iframe id="bonplan-frame" src="" onload="setTimeout(function(){loaderOff()},4000);"></iframe>
         </ons-page>
     </ons-template>
     

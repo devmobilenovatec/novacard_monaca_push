@@ -641,8 +641,7 @@ h4.recharge-title{
 }
 
 #bonplan-frame{
-    height: 90%;
-    margin-left: 8px;
+    overflow-x:hidden;
 }
 
 #select-bp{

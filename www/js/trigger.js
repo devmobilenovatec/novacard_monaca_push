@@ -112,25 +112,10 @@ function appTabTrigger(){
         break;
          //Onglet Bon plans
         case 4:
-           loaderOn();
-           
-           //APPEL DIRECTORY CTOOLS
-           //Retrouver le device id
-           populateDevice();
-           var devId;
-           if(typeof GLOBAL_device.serial != "undefined" ){
-               devId = GLOBAL_device.serial;
+           if($("#bonplan-frame").attr("src").length==0){
+                loaderOn();
+                loadCToolsDir();
            }
-           else{
-               //TODO : améliorer ce cas de figure
-               devId = "UNKNOWN";
-           }
-           logDebug("[CTOOLS] DevId = "+devId+" <"+GLOBAL_device.serial+">");
-           urlCouponDir = GLOBAL_couponDirectory+devId;
-           logDebug("[CTOOLS] urlDir = "+urlCouponDir);
-           
-           //Appel dans la frame
-           $("#bonplan-frame").attr("src",urlCouponDir);
            
            //OLD
             //setTimeout(function(){

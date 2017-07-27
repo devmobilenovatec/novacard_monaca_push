@@ -1650,4 +1650,27 @@ function ouvrePopUp(destURL) {
 /**
  * CUSTOMER
  */
-
+ 
+ /**
+  * COUPONTOOLS
+*/
+//APPEL DIRECTORY CTOOLS
+function loadCToolsDir(){
+    //Retrouver le device id
+    populateDevice();
+    var devId;
+    if(typeof GLOBAL_device.serial != "undefined" ){
+       devId = GLOBAL_device.serial;
+    }
+    else{
+       //TODO : améliorer ce cas de figure
+       devId = "UNKNOWN";
+    }
+    logDebug("[CTOOLS] DevId = "+devId+" <"+GLOBAL_device.serial+">");
+    urlCouponDir = GLOBAL_couponDirectory+devId;
+    logDebug("[CTOOLS] urlDir = "+urlCouponDir);
+    
+    //Appel dans la frame
+    $("#bonplan-frame").attr("style","width:"+window.innerWidth+"px; height:"+window.innerHeight+"px");
+    $("#bonplan-frame").attr("src",urlCouponDir);
+}
