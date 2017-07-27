@@ -350,7 +350,7 @@
     <!-- PAGES SOUS-CATEG - BON PLANS -->
     <ons-template id="bonplan">
         <ons-page>
-            <div id="bonplan-content" class="content"></div>
+            <iframe id="bonplan-frame" src="" onload="setTimeout(function(){loaderOff()},4000);"></iframe>
         </ons-page>
     </ons-template>
     
@@ -361,7 +361,7 @@
         </ons-toolbar>
         
         <div id="gen-content-divbp" class="content">
-            <iframe id="bonplan-frame" src="" onload="setTimeout(function(){loaderOff()},4000);"></iframe>
+            <iframe id="divbp-frame" src="" onload="setTimeout(function(){loaderOff()},4000);"></iframe>
         </div>
         </ons-page>
     </ons-template>

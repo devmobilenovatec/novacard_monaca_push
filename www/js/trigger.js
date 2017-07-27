@@ -113,21 +113,34 @@ function appTabTrigger(){
          //Onglet Bon plans
         case 4:
            loaderOn();
-            setTimeout(function(){
-                if(GLOBAL_loginRes.success){
-                    loadPage({destination:'bonplan', credentials:true, local:true, divId:'#bonplan-content'});
-                }else{
-                    //Chargement page enregistrement
-                    loadPage({destination:'register', credentials:false, force_logout: true, local:true, divId:'#bonplan-content'});
-                    //Load coupon directory from coupontools
-                    //appNav.pushPage("generic-divbp");
-                    //setTimeout(function(){
-                    //    $("#bonplan-frame").attr("src",GLOBAL_couponDirectory); 
-                    //    $("#bonplan-frame").attr("style","width:100%; height:95%;")
-                    //},500);
-                    
-                }
-            },500);
+           
+           //APPEL DIRECTORY CTOOLS
+           //Retrouver le device id
+           populateDevice();
+           var devId;
+           if(typeof GLOBAL_device.serial != "undefined" ){
+               devId = GLOBAL_device.serial;
+           }
+           else{
+               //TODO : améliorer ce cas de figure
+               devId = "UNKNOWN";
+           }
+           logDebug("[CTOOLS] DevId = "+devId+" <"+GLOBAL_device.serial+">");
+           urlCouponDir = GLOBAL_couponDirectory+devId;
+           logDebug("[CTOOLS] urlDir = "+urlCouponDir);
+           
+           //Appel dans la frame
+           $("#bonplan-frame").attr("src",urlCouponDir);
+           
+           //OLD
+            //setTimeout(function(){
+            //    if(GLOBAL_loginRes.success){
+            //        loadPage({destination:'bonplan', credentials:true, local:true, divId:'#bonplan-content'});
+            //    }else{
+            //Chargement page enregistrement
+            //loadPage({destination:'register', credentials:false, force_logout: true, local:true, divId:'#bonplan-content'});        
+            //    }
+            //},500);
             
         break;
         default:
