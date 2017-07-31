@@ -1660,17 +1660,17 @@ function loadCToolsDir(){
     populateDevice();
     var devId;
     if(typeof GLOBAL_device.serial != "undefined" ){
-       devId = GLOBAL_device.serial;
+       devId = parseInt(GLOBAL_device.serial.substring(0,8),16);
     }
     else{
        //TODO : améliorer ce cas de figure
-       devId = "UNKNOWN";
+       devId = 11000011;
     }
     logDebug("[CTOOLS] DevId = "+devId+" <"+GLOBAL_device.serial+">");
     urlCouponDir = GLOBAL_couponDirectory+devId;
     logDebug("[CTOOLS] urlDir = "+urlCouponDir);
     
     //Appel dans la frame
-    $("#bonplan-frame").attr("style","width:"+window.innerWidth+"px; height:"+window.innerHeight+"px");
+    $("#bonplan-frame").attr("style","margin-left:"+(window.innerWidth*0.02)+"px; width:"+(window.innerWidth*0.96)+"px; height:"+(window.innerHeight*0.82)+"px; border:none;");
     $("#bonplan-frame").attr("src",urlCouponDir);
 }
